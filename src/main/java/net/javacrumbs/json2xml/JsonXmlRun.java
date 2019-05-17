@@ -1,6 +1,7 @@
 package net.javacrumbs.json2xml;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -27,7 +28,6 @@ public class JsonXmlRun {
 			if(cli.help)
 				printUsageAndExit();
 			
-			//System.out.println("Performing operation: " + cli.queryOperation.toString());
 			File inputFile = new File(cli.inputFilePath);
 			if(!inputFile.exists())
 				throw new IllegalArgumentException("Input file \"" + inputFile.getAbsolutePath() + "\" does not exist");
@@ -69,13 +69,13 @@ public class JsonXmlRun {
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			InputSource source = new InputSource(new StringReader(stringJson));
 			StringWriter writer = new StringWriter();
-			//DOMResult result = new DOMResult();
 			transformer.transform(new SAXSource(new JsonXmlReader(null, true, "root"), source),  new StreamResult(writer));
 			String xml = writer.toString();
 			System.out.println("XML done");
 			System.out.println(xml);
-			//result.getNode();
-
+			PrintWriter out = new PrintWriter(cli.outputFilePath);
+			out.println(xml);
+			out.close();
 		} catch (Exception e) {
 			printUsageAndExit(e);
 		}
