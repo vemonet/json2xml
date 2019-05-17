@@ -98,7 +98,7 @@ Json2Xml converts the following JSON
 </table>
 
 
-	
+
 Usage
 -------------
 
@@ -107,7 +107,7 @@ If you have SAX content handler, you can use `net.javacrumbs.json2xml.JsonSaxAda
 	ContentHandler ch = ...;
 	JsonSaxAdapter adapter = new JsonSaxAdapter(json, ch);
 	adapter.parse();
-	
+
 Otherwise it's possible to use `net.javacrumbs.json2xml.JsonXmlReader` together with standard Java transformation.
 
 	Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -122,7 +122,7 @@ For example
     DOMResult result = new DOMResult();
     transformer.transform(new SAXSource(new JsonXmlReader(namespace, addTypeAttributes, artificialRootName), source), result);
     result.getNode();
-	
+
 Type attributes
 ---------------
 Since XML does not have any mechanism to reflect JSON type information, there is a new feature since json2xml version 1.2. You can switch on the `addTypeAttributes` flag using a 
@@ -130,55 +130,55 @@ constructor argument. Then you will get the type information in XML attributes l
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<document xmlns="http://javacrumbs.net/test">
-       <a type="int">1</a>
-       <b type="int">2</b>
-       <c>
-          <d type="string">text</d>
-       </c>
-       <e type="array">
-          <e type="int">1</e>
-          <e type="int">2</e>
-          <e type="int">3</e>
-       </e>
-       <f type="array">
-          <f type="array">
-             <f type="int">1</f>
-             <f type="int">2</f>
-             <f type="int">3</f>
-          </f>
-          <f type="array">
-             <f type="int">4</f>
-             <f type="int">5</f>
-             <f type="int">6</f>
-          </f>
-       </f>
-       <g type="null" />
-       <h type="array">
-          <h>
-             <i type="boolean">true</i>
-             <j type="boolean">false</j>
-          </h>
-       </h>
-       <k type="array">
-          <k type="array">
-             <k>
-                <l type="int">1</l>
-                <m type="int">2</m>
-             </k>
-          </k>
-          <k type="array">
-             <k>
-                <n type="int">3</n>
-                <o type="int">4</o>
-             </k>
-             <k>
-                <p type="int">5</p>
-                <q type="int">6</q>
-             </k>
-          </k>
-       </k>
-    </document>
-	
+	   <a type="int">1</a>
+	   <b type="int">2</b>
+	   <c>
+	      <d type="string">text</d>
+	   </c>
+	   <e type="array">
+	      <e type="int">1</e>
+	      <e type="int">2</e>
+	      <e type="int">3</e>
+	   </e>
+	   <f type="array">
+	      <f type="array">
+	         <f type="int">1</f>
+	         <f type="int">2</f>
+	         <f type="int">3</f>
+	      </f>
+	      <f type="array">
+	         <f type="int">4</f>
+	         <f type="int">5</f>
+	         <f type="int">6</f>
+	      </f>
+	   </f>
+	   <g type="null" />
+	   <h type="array">
+	      <h>
+	         <i type="boolean">true</i>
+	         <j type="boolean">false</j>
+	      </h>
+	   </h>
+	   <k type="array">
+	      <k type="array">
+	         <k>
+	            <l type="int">1</l>
+	            <m type="int">2</m>
+	         </k>
+	      </k>
+	      <k type="array">
+	         <k>
+	            <n type="int">3</n>
+	            <o type="int">4</o>
+	         </k>
+	         <k>
+	            <p type="int">5</p>
+	            <q type="int">6</q>
+	         </k>
+	      </k>
+	   </k>
+	</document>
+
 Artificial root
 ---------------
 XML support only one root element but JSON documents may have multiple roots. To overcome this mismatch,
@@ -186,7 +186,7 @@ you can specify `artificialRootName` which will generate artificial XML root wit
 `new JsonXmlReader(null, false, "artificialRoot")` will transform
 
     {"a":1, "b":2}
-    
+
 to
     
     <artificialRoot>
@@ -240,7 +240,19 @@ To use with Maven, add this dependency
 
 
 
+## Docker build
+
+```shell
+docker build -t json2xml .
+```
+
+## Docker run
+
+```shell
+docker run -it -v /data/json2xml:data json2xml -i /data/test.json 
+```
 
 
 
-	
+
+​	
