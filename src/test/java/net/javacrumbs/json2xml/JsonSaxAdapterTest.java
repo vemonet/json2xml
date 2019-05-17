@@ -27,12 +27,10 @@ import org.xml.sax.InputSource;
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
-import static net.javacrumbs.json2xml.JsonXmlHelper.convertToJson;
 import static net.javacrumbs.jsonunit.JsonAssert.assertJsonEquals;
 
 import static org.junit.Assert.assertTrue;
